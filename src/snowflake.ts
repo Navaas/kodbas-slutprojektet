@@ -1,26 +1,23 @@
 // Definiera hur du vill att snöflingan ska se ut.
 class Snowflake {
   // Properties - Egenskaper
-  private positionX: number;
-  public positionY: number;
+  public position: p5.Vector;
   private size: number;
-  private velocityY: number;
-  private velocityX: number;
+  private velocity: p5.Vector;
 
   // Constructor. Hur snöflingan är uppbyggd. Bygga upp objektet, körs bara en gång.
   constructor() {
-    this.positionY = -10;
-    this.positionX = random(0, width); // Det snöar på hela skärmen från sida till sida.
+    this.position = createVector(random(0, width), 10);
     this.size = random(1, 5);
-    this.velocityY = random(1, 3);
-    this.velocityY = random(0.3, 0.6) * this.size; // Små flingor faller långsammare.
-    this.velocityX = random(-0.5, 0.5); // Flingorna fallar i sidled också.
+    this.velocity = createVector(
+      random(-0.5, 0.5),
+      random(0.3, 0.6) * this.size // Små flingor faller långsammare.
+    ); // Flingorna fallar i sidled också.
   }
 
   // Methods - Metoder
   public update() {
-    this.positionY += this.velocityY;
-    this.positionX += this.velocityX;
+    this.position.add(this.velocity);
   }
 
   // Ta för vana att alltid lägga till push och pop. Ta en ny pensen, släng penseln när du är klar.
@@ -29,7 +26,7 @@ class Snowflake {
     push();
     fill(255); // Detta blir vit färg
     stroke(255);
-    circle(this.positionX, this.positionY, this.size);
+    circle(this.position.x, this.position.y, this.size);
     pop();
   }
 }

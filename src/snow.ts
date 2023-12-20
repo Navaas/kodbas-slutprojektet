@@ -13,7 +13,7 @@ class Snow {
   private updateSnow() {
     for (const flake of this.snow) {
       flake.update();
-      if (flake.positionY > height) {
+      if (flake.position.y > height) {
         // Sätt * 0.5 så försvinner flingorna på halva skärmen
         const index = this.snow.indexOf(flake); // Hämta index i arrayen.
         this.snow.splice(index, 1); // Plocka bort sak i arrayen.
