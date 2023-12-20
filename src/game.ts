@@ -19,8 +19,7 @@ class Game {
     // }
   }
 
-  // Med denna loopen så faller snöflingorna.
-
+  // Skriv ut saker
   public draw() {
     background("black");
     this.drawText();
@@ -31,6 +30,7 @@ class Game {
     }
   }
 
+  // Måla ut saker
   public drawText() {
     push();
     fill("white");
