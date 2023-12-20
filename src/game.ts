@@ -1,15 +1,15 @@
 class Game {
   private isCircleVisible: boolean;
-  private snow: Snowflake[]; // Spara snöflingorna i en array.
+  private snow: Snow;
 
   constructor() {
     this.isCircleVisible = false;
-    this.snow = [];
+    this.snow = new Snow();
   }
 
   public update() {
     this.isCircleVisible = mouseIsPressed;
-
+    this.snow.update();
     // if (mouseIsPressed) {
     //   if (!music.mystery.isPlaying()) {
     //     music.mystery.loop();
@@ -17,36 +17,17 @@ class Game {
     // } else {
     //   music.mystery.pause();
     // }
-
-    this.snow.push(new Snowflake()); // Ta en snöflinga och pusha in det i arrayen.
-    this.updateSnow();
   }
 
   // Med denna loopen så faller snöflingorna.
-  private updateSnow() {
-    for (const flake of this.snow) {
-      flake.update();
-      if (flake.positionY > height) {
-        // Sätt * 0.5 så försvinner flingorna på halva skärmen
-        const index = this.snow.indexOf(flake); // Hämta index i arrayen.
-        this.snow.splice(index, 1); // Plocka bort sak i arrayen.
-      }
-    }
-  }
 
   public draw() {
     background("black");
     this.drawText();
-    this.drawSnow();
+    this.snow.draw();
 
     if (this.isCircleVisible) {
       this.drawCircle();
-    }
-  }
-
-  private drawSnow() {
-    for (const flake of this.snow) {
-      flake.draw(); // Säg till snöflingan att rita ut sig.
     }
   }
 
