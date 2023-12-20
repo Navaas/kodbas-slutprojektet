@@ -5,6 +5,7 @@ class Snowflake {
   public positionY: number;
   private size: number;
   private velocityY: number;
+  private velocityX: number;
 
   // Constructor. Hur snöflingan är uppbyggd. Bygga upp objektet, körs bara en gång.
   constructor() {
@@ -13,11 +14,13 @@ class Snowflake {
     this.size = random(1, 5);
     this.velocityY = random(1, 3);
     this.velocityY = random(0.3, 0.6) * this.size; // Små flingor faller långsammare.
+    this.velocityX = random(-0.5, 0.5); // Flingorna fallar i sidled också.
   }
 
   // Methods - Metoder
   public update() {
     this.positionY += this.velocityY;
+    this.positionX += this.velocityX;
   }
 
   // Ta för vana att alltid lägga till push och pop. Ta en ny pensen, släng penseln när du är klar.
