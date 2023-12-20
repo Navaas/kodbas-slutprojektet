@@ -18,6 +18,20 @@ class Snowflake {
   // Methods - Metoder
   public update() {
     this.position.add(this.velocity);
+    this.moveAwayFromMouse();
+  }
+
+  // Snöflingorna flyttar sig från musen.
+  private moveAwayFromMouse() {
+    const mouseVector = createVector(mouseX, mouseY);
+    const dist = mouseVector.dist(this.position);
+    if (dist < 100) {
+      if (this.position.x > mouseX) {
+        this.position.x += this.velocity.y;
+      } else {
+        this.position.x -= this.velocity.y;
+      }
+    }
   }
 
   // Ta för vana att alltid lägga till push och pop. Ta en ny pensen, släng penseln när du är klar.
